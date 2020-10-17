@@ -19,7 +19,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--conf', required=True, help="Name of the conference. e.g., emnlp, acl")
     parser.add_argument('--year', '-y', type=str, help="Year when the conference held. 4 digits required", required=True)
-    parser.add_argument('--save-dir', '-s', type=str, help="Directory to save crawled table")
+    parser.add_argument('--save-dir', '-s', type=str, help="Directory to save crawled table (default=result)")
     args = parser.parse_args()
 
     conf = norm_conference_name(args.conf)
