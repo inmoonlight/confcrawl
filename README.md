@@ -11,8 +11,9 @@ title | author | arxiv | type
 A Bilingual Generative Transformer for Semantic Sentence Embedding | John Wieting, Graham Neubig and Taylor Berg-Kirkpatrick | https://arxiv.org/abs/1911.03895 | long
 A Centering Approach for Discourse Structure-aware Coherence Modeling | Sungho Jeon and Michael Strube | N/A | long
 A Computational Approach to Understanding Empathy Expressed in Text-Based Mental Health Support | Ashish Sharma, Adam Miner, David Atkins and Tim Althoff | N/A | long
-A Dataset for Tracking Entities in Open Domain Procedural Text | Niket Tandon, Keisuke Sakaguchi, Bhavana Dalvi, Dheeraj Rajagopal, Peter Clark, Michal Guerquin, Kyle Richardson and Eduard Hovy | https://arxiv.org/abs/1805.06975 | long
-
+||
+Why Skip If You Can Combine: A Simple Knowledge Distillation Technique for Intermediate Layers| Yimeng Wu, Peyman Passban, Mehdi Rezagholizadeh and Qun Liu| https://arxiv.org/abs/2010.03034 | short
+Within-Between Lexical Relation Classification using Path-based and Distributional Data| Oren Barkan, Avi Caciularu and Ido Dagan | N/A | short
 
 
 
