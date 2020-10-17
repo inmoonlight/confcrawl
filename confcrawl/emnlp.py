@@ -28,7 +28,7 @@ def emnlp_2020(save_dir: Optional[str] = None) -> None:
     url = "https://2020.emnlp.org/papers/main"
     result = defaultdict(list)
     save_dir = f'{root_dir}/result' if save_dir is None else save_dir
-    os.makedirs(save_dir, is_ok=True)
+    os.makedirs(save_dir, exist_ok=True)
 
     r = requests.get(url)
     if r.ok:
