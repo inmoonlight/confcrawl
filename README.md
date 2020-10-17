@@ -2,7 +2,7 @@
 
 Crawler for lazy paper hunters 😎 <br>
 
-Typing is all you need to get accepted paper lists along with their arXiv links, if available. <br>
+`A single command line` is all you need to get accepted paper lists along with their arXiv links, if available. <br>
 Results are saved in `tsv` in `result` directory if not assigned. Below is an example of EMNLP 2020, which can be found in `result/emnlp_2020.tsv`:
 
 
@@ -41,7 +41,7 @@ optional arguments:
 
 ## Example
 
-To crawl emnlp 2020 accepted papers, all you need is to type a single command:
+To crawl emnlp 2020 accepted papers, type this single command:
 
 ```
 $ python crawl.py --conf emnlp --year 2020
