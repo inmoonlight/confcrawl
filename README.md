@@ -3,7 +3,7 @@
 Crawler for lazy paper hunters 😎 <br>
 
 Typing is all you need to get accepted paper lists with their arXiv links if available. <br>
-Results are saved in `result` directory if not assigned in `tsv`. Below is an example of EMNLP 2020, which can be found in `result/emnlp_2020.tsv`:
+Results are saved in `tsv` in `result` directory if not assigned. Below is an example of EMNLP 2020, which can be found in `result/emnlp_2020.tsv`:
 
 
 title | author | arxiv | type
