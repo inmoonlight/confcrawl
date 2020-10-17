@@ -8,22 +8,23 @@ from time import sleep
 root_dir = Path(__file__).parents[1]
 
 
-def _get_snippet(root):
-    # snippet = root.xpath("/html/body/div[7]/div[2]/div[10]/div[1]/div[2]/div/div[2]/div[2]/div/div/div[1]/div[1]/div/div[1]/div/div[2]/div/div[1]/a/@href")
-    snippet = root.xpath("//*[@id='rso']/div[1]/div[1]/div/div[1]/div/div/div/div[1]/a/@href")
-    if len(snippet) > 0 and "arxiv" in snippet[0]:
-        return snippet[0]
+def _get_snippet(root: html.HtmlElement, keyword: str):
+    snippet_link = root.xpath("//*[@id='rso']/div[1]/div[1]/div/div[1]/div/div/div/div[1]/a/@href")
+    snippet_title = root.xpath("//*[@id='rso']/div[1]/div[1]/div/div[1]/div/div[2]/div/div[1]/a/h3/span/text()")
+    if len(snippet_link) > 0 and "arxiv" in snippet_link[0] and keyword[:20] == snippet_title[0][:20]:  # google collapses long title
+        return snippet_link[0]
     else:
         return None
 
 
-def _get_top_retrieval(root):
-    retrevied_doc = root.xpath("//*[@id='rso']/div/div/div[1]/a/@href")
-    if len(retrevied_doc) == 0:
+def _get_top_retrieval(root: html.HtmlElement, keyword: str):
+    retrevied_doc_hrefs = root.xpath("//*[@id='rso']/div/div/div[1]/a/@href")
+    retrevied_doc_titles = root.xpath("//*[@id='rso']/div/div/div[1]/a/h3/span/text()")
+    if len(retrevied_doc_hrefs) == 0:
         return None
-    for doc in retrevied_doc[:1]:  # considered github
-        if "arxiv" in doc:
-            return doc
+    for href, title in zip(retrevied_doc_hrefs[:1], retrevied_doc_titles[:1]):  # considered github
+        if "arxiv" in href and keyword[:20] == title[:20]:
+            return href
     else:
         return None
 
@@ -35,17 +36,16 @@ def search_google(keyword: str, sleep_time: int):
     }
     base_url = "https://www.google.com/search?q={}"
 
-    keyword = keyword.replace(" ", '-')
-    keyword = parse.quote(keyword)
-    url = base_url.format(keyword)
+    url_parsed_keyword = parse.quote(keyword.replace(" ", '-'))
+    url = base_url.format(url_parsed_keyword)
 
     sleep(sleep_time)
     r = requests.get(url, headers=headers)
     root = html.fromstring(r.text)
     if r.ok:
-        arxiv = _get_snippet(root)
+        arxiv = _get_snippet(root, keyword)
         if arxiv is None:
-            arxiv = _get_top_retrieval(root)
+            arxiv = _get_top_retrieval(root, keyword)
             if arxiv is None:
                 arxiv = "N/A"
         return arxiv
