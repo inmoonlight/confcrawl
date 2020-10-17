@@ -9,6 +9,12 @@ root_dir = Path(__file__).parents[1]
 
 
 def _get_snippet(root: html.HtmlElement, keyword: str):
+    """Retrieve snippet result
+
+    Args:
+        root: searched result html
+        keyword: query
+    """
     snippet_link = root.xpath("//*[@id='rso']/div[1]/div[1]/div/div[1]/div/div/div/div[1]/a/@href")
     snippet_title = root.xpath("//*[@id='rso']/div[1]/div[1]/div/div[1]/div/div[2]/div/div[1]/a/h3/span/text()")
     if len(snippet_link) > 0 and "arxiv" in snippet_link[0] and keyword[:20] == snippet_title[0][:20]:  # google collapses long title
@@ -18,6 +24,12 @@ def _get_snippet(root: html.HtmlElement, keyword: str):
 
 
 def _get_top_retrieval(root: html.HtmlElement, keyword: str):
+    """Retrieve matched document in top 1-2 search results
+
+    Args:
+        root: searched result html
+        keyword: query
+    """
     retrevied_doc_hrefs = root.xpath("//*[@id='rso']/div/div/div[1]/a/@href")
     retrevied_doc_titles = root.xpath("//*[@id='rso']/div/div/div[1]/a/h3/span/text()")
     if len(retrevied_doc_hrefs) == 0:
