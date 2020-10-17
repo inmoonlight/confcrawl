@@ -42,14 +42,14 @@ def emnlp_2020(save_dir: Optional[str] = None) -> None:
     short_authors = root.xpath('/html/body/div/div/div/main/article/div/section[2]/section[2]/ul/li/article/span[2]/text()[1]')
     assert len(short_titles) == len(short_authors)
 
-    for long_title, long_author in tqdm(zip(long_titles, long_authors), desc='Long paper'):
+    for long_title, long_author in tqdm(zip(long_titles, long_authors), desc='Long paper', total=len(long_titles)):
         result['title'].append(long_title)
         result['author'].append(long_author)
         arxiv = search_google(long_title, sleep_time=2)
         result['arxiv'].append(arxiv)
         result['type'].append('long')
 
-    for short_title, short_author in tqdm(zip(short_titles, short_authors), desc='Short paper'):
+    for short_title, short_author in tqdm(zip(short_titles, short_authors), desc='Short paper', total=len(short_titles)):
         result['title'].append(short_title)
         result['author'].append(short_author)
         arxiv = search_google(short_title, sleep_time=2)
