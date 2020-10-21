@@ -57,7 +57,7 @@ def emnlp_2020(save_dir: Optional[str] = None) -> None:
     ):
         result["title"].append(long_title)
         result["author"].append(long_author)
-        arxiv = search_google(long_title, sleep_time=2)
+        arxiv = search_google(long_title, sleep_time=1)
         result["arxiv"].append(arxiv)
         result["type"].append("long")
 
@@ -66,7 +66,7 @@ def emnlp_2020(save_dir: Optional[str] = None) -> None:
     ):
         result["title"].append(short_title)
         result["author"].append(short_author)
-        arxiv = search_google(short_title, sleep_time=2)
+        arxiv = search_google(short_title, sleep_time=1)
         result["arxiv"].append(arxiv)
         result["type"].append("short")
 
