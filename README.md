@@ -21,10 +21,9 @@ Within-Between Lexical Relation Classification using Path-based and Distribution
 
 conference | 2020 | 2021
 -- | -- | --
-EMNLP | Yes | TBD
 ACL | No | TBD
-NAACL | No | TBD
-EACL | TBD | TBD
+NAACL | No | Yes
+EMNLP | Yes | TBD
 
 ## Usage
 
