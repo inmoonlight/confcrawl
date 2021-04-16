@@ -18,7 +18,7 @@ def norm_conference_name(conference):
         "The North American Chapter of the Association for Computational Linguistics",
         "North American Chapter of the Association for Computational Linguistics",
     ]:
-        raise NotImplementedError(f"{conference} is not supported yet")
+        conference = "naacl"
     else:
         raise ValueError(f"{conference} is an invalid input")
     return conference
