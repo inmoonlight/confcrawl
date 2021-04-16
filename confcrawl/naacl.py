@@ -52,4 +52,4 @@ def naacl_2021(save_dir: Optional[str] = None) -> None:
 
     result_df = pd.DataFrame(result)
     save_path = f"{save_dir}/naacl_2021.tsv"
-    result_df.to_csv(save_path, sep='\t', index=False)
+    result_df.to_csv(save_path, sep="\t", index=False)

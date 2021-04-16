@@ -38,12 +38,14 @@ def _get_top_retrieval(root: html.HtmlElement, keyword: str):
         root: searched result html
         keyword: query
     """
-    retrevied_doc_hrefs = root.xpath("//*[@id='rso']/div/div/div[1]/a/@href")
-    retrevied_doc_titles = root.xpath("//*[@id='rso']/div/div/div[1]/a/h3/span/text()")
+    retrevied_doc_hrefs = root.xpath("//*[@id='rso']/div/div[1]/div/div/div/a/@href")
+    retrevied_doc_titles = root.xpath(
+        "//*[@id='rso']/div/div[1]/div/div/div/a/h3/text()"
+    )
     if len(retrevied_doc_hrefs) == 0:
         return None
     for href, title in zip(
-        retrevied_doc_hrefs[:1], retrevied_doc_titles[:1]
+        retrevied_doc_hrefs[:2], retrevied_doc_titles[:2]
     ):  # considered github
         if "arxiv" in href and keyword[:20] == title[:20]:
             return href
@@ -63,13 +65,15 @@ def search_google(keyword: str, sleep_time: int):
 
     sleep(sleep_time)
     r = requests.get(url, headers=headers)
+
+    while not r.ok:
+        sleep(sleep_time)
+        r = requests.get(url, headers=headers)
+
     root = html.fromstring(r.text)
-    if r.ok:
-        arxiv = _get_snippet(root, keyword)
+    arxiv = _get_snippet(root, keyword)
+    if arxiv is None:
+        arxiv = _get_top_retrieval(root, keyword)
         if arxiv is None:
-            arxiv = _get_top_retrieval(root, keyword)
-            if arxiv is None:
-                arxiv = "N/A"
-        return arxiv
-    else:
-        return "N/A"
+            arxiv = "N/A"
+    return arxiv
